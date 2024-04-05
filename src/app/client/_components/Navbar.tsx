@@ -1,3 +1,4 @@
+import React from 'react';
 
 import { Icons } from "@/components/ui/Icons"
 import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper"

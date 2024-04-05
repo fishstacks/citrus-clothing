@@ -1,5 +1,7 @@
 "use client"
 
+import React from 'react';
+
 import { PRODUCT_CATEGORIES } from "../config"
 import { ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils";
