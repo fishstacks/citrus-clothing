@@ -1,5 +1,7 @@
 "use client"
 
+import React from 'react';
+
 import { ShoppingBagIcon, PartyPopperIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";

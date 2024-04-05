@@ -1,5 +1,7 @@
 "use client"
 
+import React from 'react';
+
 import { PRODUCT_CATEGORIES } from "../config";
 import { useState } from "react";
 import NavItem from "./NavItem";
