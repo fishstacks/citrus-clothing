@@ -18,14 +18,14 @@ export default function AdminProductsPage() {
 function ProductsTable() {
     return (
         <div className="max-w-full overflow-x-auto">
-            <Table>
+            <Table style={{ tableLayout: 'fixed' }}>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-auto text-left"><span>Available for purchase</span></TableHead>
-                        <TableHead className="w-auto text-left">Name</TableHead>
-                        <TableHead className="w-auto text-left">Price</TableHead>
-                        <TableHead className="w-auto text-left">Orders</TableHead>
-                        <TableHead className="sr-only"><span>Actions</span></TableHead>
+                        <TableHead><span>Available for purchase</span></TableHead>
+                        <TableHead>Name</TableHead>
+                        <TableHead>Price</TableHead>
+                        <TableHead>Orders</TableHead>
+                        <TableHead><span>Actions</span></TableHead>
                     </TableRow>
                 </TableHeader>
             </Table>
