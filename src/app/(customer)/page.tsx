@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from 'next/link'
@@ -9,6 +9,7 @@ import db from '../admin/db/db';
 import { Product } from '@prisma/client';
 import { ProductCard } from './_components/ProductCard';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { cache } from '@/lib/cache';
 
 const perks = [
   {
@@ -31,21 +32,31 @@ const perks = [
   },
 ]
 
-function getPopularProducts(){
-  return db.product.findMany({
-    where : {isAvailableForPurchase : true},
-    orderBy: { orders: {_count: "desc"}},
-    take: 6
-  })
-}
+{/*const [cartItems, setCartItems] = useState<Product[]>([]);
+const addToCart = (product: Product) => {
+  setCartItems((prevItems) => [...prevItems, product]);
+};*/}
 
-function getNewestProducts(){
+const getPopularProducts = cache(
+  () => {
+    return db.product.findMany({
+      where: { isAvailableForPurchase: true },
+      orderBy: { orders: { _count: "desc" } },
+      take: 6,
+    })
+  },
+  ["/", "getPopularProducts"],
+  { revalidate: 60 * 60 * 12 }
+)
+
+const getNewestProducts = cache(() => {
   return db.product.findMany({
-    where :{isAvailableForPurchase : true},
-    orderBy: { createdAt: "desc"},
-    take: 6
+    where: { isAvailableForPurchase: true },
+    orderBy: { createdAt: "desc" },
+    take: 6,
   })
-}
+}, ["/", "getNewestProducts"])
+
 
 type ProductsCarouselProps = {
   title: string

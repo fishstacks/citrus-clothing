@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 
 import { Icons } from "@/components/ui/Icons"
@@ -5,12 +7,14 @@ import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper"
 import Link from "next/link"
 import NavItems from "./NavItems"
 import { buttonVariants } from "@/components/ui/button"
-import Bag from "./Bag"
+import Cart from "./Cart"
 import { cn } from "@/lib/utils"
+import useCart from '../hooks/useCart';
 
 
 const Navbar = () => {
 
+    const { cartItems } = useCart();
     const user = null
 
     return (
@@ -19,7 +23,6 @@ const Navbar = () => {
                 <MaxWidthWrapper>
                     <div className='border-b border-gray-200'>
                         <div className='flex h-12 items-center'>
-                            {/* TO DO MOBILE */}
                             <div className='ml-4 flex lg:ml-0'>
                                 <Link href='/'>
                                     <Icons.logo src="/citruslogo.png" className="h-10 w-25" />
@@ -37,7 +40,7 @@ const Navbar = () => {
                                     {user ? <p></p> : <Link href="/sign-up" className={buttonVariants({variant: "ghost"})}>Sign Up</Link>}
                                     {user ? <span className="h-6 w-px bg-gray-200"/> : null}
                                     {user ? null : <div className="flex lg:ml-6 "><span className="h-6 w-px bg-gray-200"/></div>}
-                                    <div className="ml-4 flow-root lg:ml-6"><Bag/></div>
+                                    <div className="ml-4 flow-root lg:ml-6"><Cart/></div>
                                 </div>
                             </div>
                         </div>

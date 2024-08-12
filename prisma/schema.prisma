@@ -23,7 +23,7 @@ model Product {
   isAvailableForPurchase Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  orders Order[]
+  orders OrderItem[]
 } 
 
 model User {
@@ -42,7 +42,16 @@ model Order {
   updatedAt DateTime @updatedAt
 
   userId String
-  productId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+  
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  quantity  Int
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 }

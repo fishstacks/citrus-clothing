@@ -16,7 +16,7 @@ export function ProductCard({id, name, priceInCents, imagePath}: ProductCardProp
 
     return (
     <div className="flex flex-nowrap gap-0">
-    <Link href={`/products/${id}/purchase`} >
+    <Link href={`/products/${id}`} >
     <Card className="flex flex-col w-[15rem]">
   <div className="relative w-full h-[25rem]">
     <Image
